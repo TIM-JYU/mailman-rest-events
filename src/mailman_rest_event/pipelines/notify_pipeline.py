@@ -16,12 +16,13 @@ class NotifyPipeline:
 
     def __init__(self):
         for name, pipeline in config.pipelines.items():
+            logger.info(f"Pipeline: {name}")
             try:
                 if "to-archive" in pipeline._handlers and "to-notify" not in pipeline._handlers:
-                    logger.info(f"Added to-notify to {pipeline.name}")
+                    logger.info(f"Added to-notify to {name}")
                     pipeline._handlers.append("to-notify")
-            except:
-                pass
+            except Exception as e:
+                logger.error(f"Error: {e}")
 
     def __iter__(self):
         """See `IPipeline`."""
