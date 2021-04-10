@@ -11,6 +11,7 @@ setup(
     python_requires=">=3.8",
     install_requires=[
         "requests",
-        "mailman>=3"
+        "mailman>=3",
+        "mail-parser"
     ],
 )
