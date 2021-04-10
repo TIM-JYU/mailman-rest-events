@@ -9,7 +9,6 @@ from zope.event import subscribers
 
 
 logger = logging.getLogger("mailman.plugins")
-logger.info(f"Pipelines: {config.pipelines}")
 
 def init():
     # cfg = external_configuration(
@@ -36,7 +35,7 @@ init()
 class RestEventPlugin:
 
     def pre_hook(self):
-        pass
+        logger.info(f"Pipelines: {config.pipelines}")
 
     def post_hook(self):
         pass
