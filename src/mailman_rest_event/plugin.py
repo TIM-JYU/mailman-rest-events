@@ -6,7 +6,7 @@ from zope.interface import implementer
 
 logger = logging.getLogger("mailman.plugins")
 
-loger.info("RestEventPlugin start!")
+logger.info("RestEventPlugin start!")
 
 @public
 @implementer(IPlugin)
