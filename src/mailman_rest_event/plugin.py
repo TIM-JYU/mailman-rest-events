@@ -57,7 +57,7 @@ def init():
         HandledMessageEvent: (lambda evt: {
             "event": "new_message",
             "mlist": mlist_to_json(evt.mlist),
-            "message": str(evt.msg)
+            "message": evt.msg
         }),
     }
 
