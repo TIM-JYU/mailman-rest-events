@@ -47,7 +47,12 @@ def init():
             "event": "user_subscribed",
             "mlist": mlist_to_json(evt.mlist),
             "member": member_to_json(evt.member)
-        })
+        }),
+        UnsubscriptionEvent: (lambda evt: {
+            "event": "user_unsubscribed",
+            "mlist": mlist_to_json(evt.mlist),
+            "member": member_to_json(evt.member)
+        }),
     }
 
     def handle_event(evt):
