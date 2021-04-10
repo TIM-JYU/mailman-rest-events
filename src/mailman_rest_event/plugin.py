@@ -33,7 +33,7 @@ def member_to_json(member):
 
 
 def message_to_obj(msg):
-    msg_obj = MailParser(evt.msg)
+    msg_obj = MailParser(msg)
     if msg_obj.mail.get("date"):
         msg_obj.mail["date"] = msg_obj.date.isoformat()
     return msg_obj.mail
