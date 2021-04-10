@@ -53,6 +53,11 @@ def init():
             "mlist": mlist_to_json(evt.mlist),
             "member": member_to_json(evt.member)
         }),
+        HandledMessageEvent: (lambda evt: {
+            "event": "new_message",
+            "mlist": mlist_to_json(evt.mlist),
+            "message": str(evt.msg)
+        }),
     }
 
     def handle_event(evt):
