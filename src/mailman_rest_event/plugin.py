@@ -6,16 +6,17 @@ from zope.interface import implementer
 
 logger = logging.getLogger("mailman.plugins")
 
+loger.info("RestEventPlugin start!")
 
 @public
 @implementer(IPlugin)
 class RestEventPlugin:
 
     def pre_hook(self):
-        logger.info("Initialized RestEventPlugin")
+        pass
 
     def post_hook(self):
-        logger.info("Closed RestEventPlugin")
+        pass
 
     @property
     def resource(self):
