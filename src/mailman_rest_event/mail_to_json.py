@@ -5,7 +5,7 @@
 import email
 import re
 import csv
-import StringIO
+import io
 import base64
 import json
 import datetime
@@ -123,7 +123,7 @@ class MailJson:
         if isinstance(v, list):
             v = ",".join(v)
         v = v.replace("\n", " ").replace("\r", " ").strip()
-        s = StringIO.StringIO(v)
+        s = io.StringIO.StringIO(v)
         c = csv.reader(s)
         try:
             row = c.next()
