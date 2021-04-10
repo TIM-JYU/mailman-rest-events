@@ -2,8 +2,6 @@
 # (c) 2013 Newsman App
 # https://github.com/Newsman/MailToJson
 
-import sys
-import urllib2
 import email
 import re
 import csv
@@ -11,7 +9,6 @@ import StringIO
 import base64
 import json
 import datetime
-import pprint
 
 VERSION = "1.3.1"
 
