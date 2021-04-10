@@ -12,10 +12,16 @@ logger.info("Initing pipeline")
 @implementer(IPipeline)
 class NotifyPipeline:
     name = 'notify-pipeline'
-    description = 'The built-in posting pipeline with notify support.'
+    description = 'A dummy pipeline that injects to_notify handler to other pipelines.'
 
     def __init__(self):
-        logger.info(f"Pipelines: {config.pipelines}")
+        for name, pipeline in config.pipelines.items():
+            try:
+                if "to-archive" in pipeline._handlers and "to-notify" not in pipeline._handlers:
+                    logger.info(f"Added to-notify to {pipeline.name}")
+                    pipeline._handlers.append("to-notify")
+            except:
+                pass
 
     def __iter__(self):
         """See `IPipeline`."""
