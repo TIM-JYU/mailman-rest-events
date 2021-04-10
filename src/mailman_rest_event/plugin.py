@@ -32,6 +32,13 @@ def member_to_json(member):
     }
 
 
+def message_to_obj(msg):
+    msg_obj = MailParser(evt.msg)
+    if msg_obj.mail.get("date"):
+        msg_obj.mail["date"] = msg_obj.date.isoformat()
+    return msg_obj.mail
+
+
 def init():
     cfg = external_configuration(
         config.plugin.mailman_rest_event.configuration)
@@ -57,7 +64,7 @@ def init():
         HandledMessageEvent: (lambda evt: {
             "event": "new_message",
             "mlist": mlist_to_json(evt.mlist),
-            "message": MailParser(evt.msg).mail
+            "message": message_to_obj(evt.msg)
         }),
     }
 
@@ -66,7 +73,8 @@ def init():
         if t in handlers:
             try:
                 logger.info(f"Posting: {type(evt)}")
-                result = requests.post(event_webhook_url, json=handlers[t](evt))
+                result = requests.post(
+                    event_webhook_url, json=handlers[t](evt))
                 logger.info(f"Result: {result.status_code}")
             except Exception as e:
                 logger.error(f"Failed to post: {e}")
