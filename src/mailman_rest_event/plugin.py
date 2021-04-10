@@ -12,9 +12,9 @@ logger = logging.getLogger("mailman.plugins")
 logger.info(f"Pipelines: {config.pipelines}")
 
 def init():
-    config = external_configuration(
+    cfg = external_configuration(
         config.plugin.mailman_rest_event.configuration)
-    event_webhook_url = config.get("general", "webhook_url")
+    event_webhook_url = cfg.get("general", "webhook_url")
 
     if not event_webhook_url:
         logger.info("Webhook URL not set, will not be sending events")
