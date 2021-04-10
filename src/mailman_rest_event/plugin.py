@@ -23,7 +23,6 @@ def mlist_to_json(mlist):
 
 def member_to_json(member):
     return {
-        "id": member.member_id,
         "user_id": member.user_id,
         "address": {
             "email": member.address.email,
