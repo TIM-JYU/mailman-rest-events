@@ -13,7 +13,7 @@ logger.info("RestEventPlugin start!")
 def handle_event(evt):
     logger.info(f"Got event: {type(evt)}")
 
-subscribers.append(evt)
+subscribers.append(handle_event)
 
 @public
 @implementer(IPlugin)
