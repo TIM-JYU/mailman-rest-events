@@ -35,7 +35,7 @@ init()
 class RestEventPlugin:
 
     def pre_hook(self):
-        logger.info(f"Pipelines: {config.pipelines}")
+        pass
 
     def post_hook(self):
         pass
