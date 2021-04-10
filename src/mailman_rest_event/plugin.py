@@ -8,7 +8,7 @@ from zope.interface import implementer
 from zope.event import subscribers
 
 from mailman.interfaces.member import SubscriptionEvent, UnsubscriptionEvent
-from handlers.to_event import HandledMessageEvent
+from mailman_rest_event.handlers.to_event import HandledMessageEvent
 
 
 logger = logging.getLogger("mailman.plugins")
