@@ -6,8 +6,6 @@ import logging
 
 logger = logging.getLogger("mailman.plugins")
 
-logger.info("Initing pipeline")
-
 @public
 @implementer(IPipeline)
 class NotifyPipeline:
@@ -22,9 +20,8 @@ class NotifyPipeline:
                 if "to-archive" in handler_names and "to-event" not in handler_names:
                     pipeline._handlers.append(config.handlers["to-event"])
                     logger.info(f"Added to-event to {name}")
-            except Exception as e:
-                logger.error(f"Error: {e}")
+            except:
+                pass
 
     def __iter__(self):
-        """See `IPipeline`."""
         yield from config.pipelines["default-posting-pipeline"]._handlers
