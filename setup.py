@@ -6,10 +6,11 @@ setup(
     description="Send mailman events via REST",
     author="Denis Zhidkikh",
     author_email="dezhidki@jyu.fi",
+    package_dir={"": "src"},
     packages=find_packages(where="src"),
     python_requires=">=3.8",
     install_requires=[
         "requests",
         "mailman>=3"
-    ]
+    ],
 )
