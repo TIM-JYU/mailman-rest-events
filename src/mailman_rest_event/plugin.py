@@ -9,7 +9,7 @@ from zope.event import subscribers
 
 from mailman.interfaces.member import SubscriptionEvent, UnsubscriptionEvent
 from mailman_rest_event.handlers.to_event import HandledMessageEvent
-
+from mailman_rest_event.mail_to_json import MailJson
 
 logger = logging.getLogger("mailman.plugins")
 
@@ -57,7 +57,7 @@ def init():
         HandledMessageEvent: (lambda evt: {
             "event": "new_message",
             "mlist": mlist_to_json(evt.mlist),
-            "message": evt.msg
+            "message": MailJson(evt.msg).parse()
         }),
     }
 
