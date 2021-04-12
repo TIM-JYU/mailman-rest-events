@@ -43,6 +43,7 @@ def init():
     cfg = external_configuration(
         config.plugin.mailman_rest_event.configuration)
     event_webhook_url = cfg.get("general", "webhook_url", fallback=None)
+    timeout = cfg.get("general", "timeout", fallback=5)
     auth_user = cfg.get("auth", "user", fallback=None)
     auth_key = cfg.get("auth", "key", fallback=None)
 
@@ -82,8 +83,8 @@ def init():
                 result = requests.post(
                     event_webhook_url,
                     json=handlers[t](evt),
-                    auth=auth)
-                logger.info(f"Result: {result.status_code}")
+                    auth=auth,
+                    timeout=timeout)
             except Exception as e:
                 logger.error(f"Failed to post: {e}")
 
