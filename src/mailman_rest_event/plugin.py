@@ -42,7 +42,13 @@ def message_to_obj(msg):
 def init():
     cfg = external_configuration(
         config.plugin.mailman_rest_event.configuration)
-    event_webhook_url = cfg.get("general", "webhook_url")
+    event_webhook_url = cfg.get("general", "webhook_url", fallback=None)
+    auth_user = cfg.get("auth", "user", fallback=None)
+    auth_key = cfg.get("auth", "key", fallback=None)
+
+    auth = None
+    if auth_user and auth_key:
+        auth = (auth_user, auth_key)
 
     if not event_webhook_url:
         logger.info("Webhook URL not set, will not be sending events")
@@ -74,7 +80,9 @@ def init():
             try:
                 logger.info(f"Posting: {type(evt)}")
                 result = requests.post(
-                    event_webhook_url, json=handlers[t](evt))
+                    event_webhook_url,
+                    json=handlers[t](evt),
+                    auth=auth)
                 logger.info(f"Result: {result.status_code}")
             except Exception as e:
                 logger.error(f"Failed to post: {e}")
