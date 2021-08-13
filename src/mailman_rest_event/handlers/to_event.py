@@ -5,6 +5,7 @@ from public import public
 from zope.interface import implementer
 from zope.event import notify
 
+
 @public
 class HandledMessageEvent:
     def __init__(self, mlist, msg, msgdata):

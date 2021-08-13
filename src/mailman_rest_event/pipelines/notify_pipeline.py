@@ -6,6 +6,7 @@ import logging
 
 logger = logging.getLogger("mailman.plugins")
 
+
 @public
 @implementer(IPipeline)
 class NotifyPipeline:
@@ -16,7 +17,7 @@ class NotifyPipeline:
         for name, pipeline in config.pipelines.items():
             logger.info(f"Pipeline: {name}")
             try:
-                handler_names = [ h.name for h in pipeline._handlers ]
+                handler_names = [h.name for h in pipeline._handlers]
                 if "to-archive" in handler_names and "to-event" not in handler_names:
                     pipeline._handlers.append(config.handlers["to-event"])
                     logger.info(f"Added to-event to {name}")
